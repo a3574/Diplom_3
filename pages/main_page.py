@@ -1,62 +1,69 @@
 import allure
 from locators.main_page_locators import MainPageLocators
-from locators.base_page_locators import BasePageLocators
 from pages.base_page import BasePage
 from urls import Urls
 
 
 class MainPage(BasePage):
-    driver = None
-    question = ''
-    order_button_top = [*BasePageLocators.ORDER_BUTTON_TOP]
-    order_button_middle = [*MainPageLocators.ORDER_BUTTON_MIDDLE]
-    status_order_button = [*BasePageLocators.STATUS_ORDER_BUTTON]
-    status_order_field = [*BasePageLocators.STATUS_ORDER_FIELD]
-    check_status_order_button = [*BasePageLocators.CHECK_STATUS_ORDER_BUTTON]
+    first_ingredient_icon = [*MainPageLocators.FIRST_INGREDIENT_ICON]
+    first_ingredient_window = [*MainPageLocators.FIRST_INGREDIENT_WINDOW]
+    close_button_on_ingredient_window = [*MainPageLocators.CLOSE_BUTTON_ON_INGREDIENT_WINDOW]
+    counter_on_first_ingredient = [*MainPageLocators.FIRST_INGREDIENT_COUNTER]
+    basket_widget = [*MainPageLocators.BASKET]
+    button_order = [*MainPageLocators.BUTTON_ORDER]
+    order_window = [*MainPageLocators.MODAL_ORDER]
+    close_button_on_order_window = [*MainPageLocators.CLOSE_BUTTON_ON_ORDER_WINDOW]
+    modal_order_creation = [*MainPageLocators.MODAL_ORDER_CREATION]
+    image_order_create = [*MainPageLocators.IMAGE_ORDER_CREATE]
 
     @allure.step('Открываем главную страницу')
     def open_main_page(self):
-        main_page = MainPage(self.driver)
-        main_page.open_page(Urls.main_page)
+        self.open_page(Urls.main_page)
 
-    @allure.step('Клик по кнопке Заказать в середине главной страницы')
-    def click_order_button_middle(self):
-        main_page = MainPage(self.driver)
-        main_page.scroll_to_element_by_xpath(*self.order_button_middle)
-        main_page.click_on_element_by_xpath(*self.order_button_middle)
+    @allure.step('Нажимаем на первый ингредиент')
+    def click_on_first_ingredient(self):
+        self.click_on_element(self.first_ingredient_icon)
 
-    @allure.step('Клик по кнопке Заказать в заголовке страницы')
-    def click_order_button_top(self):
-        main_page = MainPage(self.driver)
-        main_page.wait_element_to_be_clickable_by_xpath(*self.order_button_top)
-        main_page.click_on_element_by_xpath(*self.order_button_top)
+    @allure.step('Нажимаем на кнопку закрытия окна деталей ингредиента')
+    def click_on_close_button_on_ingredient_window(self):
+        self.click_on_element(self.close_button_on_ingredient_window)
 
-    @allure.step('Открываем вопрос и получаем текст ответа на него')
-    def get_answer_by_question(self, question):
-        main_page = MainPage(self.driver)
-        question_element = main_page.find_on_element_by_xpath(".//*[text()=\"" + question + "\"]")
-        self.driver.execute_script("arguments[0].scrollIntoView();", question_element)
-        main_page.wait_visibility_of_element(question_element)
-        question_element.click()
-        answer_element = main_page.find_on_element_by_xpath(
-            ".//*[text()=\"" + question + "\"]/parent::div/following::div/p")
-        main_page.wait_visibility_of_element(answer_element)
-        return answer_element.text
+    @allure.step('Проверяем, что появилось окно с деталями ингедиента')
+    def check_first_ingredient_window(self):
+        self.wait_visibility_of_element(self.first_ingredient_window)
+        element = self.driver.find_element(*self.first_ingredient_window)
+        return element
 
-    @allure.step('Клик по кнопке Статус заказа')
-    def select_status_order_button(self):
-        main_page = MainPage(self.driver)
-        main_page.wait_element_to_be_clickable_by_xpath(*self.status_order_button)
-        main_page.click_on_element_by_xpath(*self.status_order_button)
+    @allure.step('Проверяем, что появилось окно с деталями ингедиента')
+    def check_close_ingredient_window(self):
+        return self.wait_invisibility_of_element(self.first_ingredient_window)
 
-    @allure.step('Заполнение поля Введите номер заказа')
-    def set_status_order_field(self, order_number):
-        main_page = MainPage(self.driver)
-        main_page.wait_element_to_be_clickable_by_xpath(*self.status_order_field)
-        main_page.set_in_element_by_xpath(*self.status_order_field, value=order_number)
+    @allure.step('Получаем число из счетчика ингредиентов')
+    def get_count_from_counter_on_first_ingredient(self):
+        self.wait_visibility_of_element(self.counter_on_first_ingredient)
+        element = self.driver.find_element(*self.counter_on_first_ingredient)
+        return element.text
 
-    @allure.step('Клик по кнопке GO!')
-    def select_check_status_order_button(self):
-        main_page = MainPage(self.driver)
-        main_page.wait_element_to_be_clickable_by_xpath(*self.check_status_order_button)
-        main_page.click_on_element_by_xpath(*self.check_status_order_button)
+    @allure.step('Перемещаем ингредиент в корзину')
+    def move_ingredient_to_basket(self):
+        self.move_element(self.first_ingredient_icon, self.basket_widget)
+        element = self.driver.find_element(*self.counter_on_first_ingredient)
+        return element.text
+
+    @allure.step('Нажимаем кнопку оформление заказа')
+    def click_on_order_button(self):
+        self.click_on_element(self.button_order)
+
+    @allure.step('Получаем номер заказа')
+    def get_order_number(self):
+        self.wait_visibility_of_element(self.order_window)
+        element = self.driver.find_element(*self.order_window)
+        return element.text
+
+    def wait_visibility_image_order_create(self):
+        self.wait_visibility_of_element(self.image_order_create)
+
+
+
+
+

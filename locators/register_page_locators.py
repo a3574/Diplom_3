@@ -9,3 +9,6 @@ class RegisterPageLocators:
     WRONG_PASSWORD_LABEL = (By.XPATH, ".//*[text()='Некорректный пароль']")
     ENTRY_LABEL = (By.XPATH, ".//*[text()='Войти']")
 
+
+
+

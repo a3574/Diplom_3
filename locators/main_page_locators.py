@@ -1,41 +1,18 @@
 from selenium.webdriver.common.by import By
 
 class MainPageLocators:
-    ENTRY_BUTTON = (By.XPATH, ".//button[text()='Войти в аккаунт']")
-    PROFILE_PAGE = (By.XPATH, ".//a[@href = '/account']")
-    CONSTRUCTOR_LABEL = (By.XPATH, ".//*[text()='Соберите бургер']")
-    BUN_SPAN = (By.XPATH, ".//span[text()='Булки']")
-    BUN_DIV = (By.XPATH, ".//span[text()='Булки']/parent::div")
-    SAUCES_SPAN = (By.XPATH, ".//span[text()='Соусы']")
-    SAUCES_DIV = (By.XPATH, ".//span[text()='Соусы']/parent::div")
-    FILLING_SPAN = (By.XPATH, ".//span[text()='Начинки']/parent::div")
-    FILLING_DIV = (By.XPATH, ".//span[text()='Начинки']/parent::div")
-
-class RegisterPageLocators:
-    LOGIN_FIELD = (By.XPATH, ".//label[text()='Имя']/following-sibling::input")
-    EMAIL_FIELD = (By.XPATH, ".//label[text()='Email']/following-sibling::input")
-    PASSWORD_FIELD = (By.XPATH, ".//label[text()='Пароль']/following-sibling::input")
-    REGISTER_BUTTON = (By.XPATH, ".//button[text()='Зарегистрироваться']")
-    WRONG_PASSWORD_LABEL = (By.XPATH, ".//*[text()='Некорректный пароль']")
-    ENTRY_LABEL = (By.XPATH, ".//*[text()='Войти']")
+    FIRST_INGREDIENT_ICON = (By.XPATH, ".//*[contains(@class, 'BurgerIngredients_ingredients__list__2A-mT')][1]/*[contains(@class, 'BurgerIngredient_ingredient__1TVf6 ml-4 mr-4 mb-8')][1]")
+    FIRST_INGREDIENT_COUNTER = (By.XPATH, ".//*[contains(@class, 'BurgerIngredients_ingredients__list__2A-mT')][1]/a[1]/div[1]/p[1]")
+    FIRST_INGREDIENT_WINDOW = (By.XPATH, ".//*[text()='Детали ингредиента']")
+    CLOSE_BUTTON_ON_INGREDIENT_WINDOW = (By.XPATH, ".//section[contains(@class, 'Modal_modal_opened__3ISw4 Modal_modal__P3_V5')]/div/button[contains(@class, 'Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK')]")
+    BASKET = (By.CLASS_NAME, 'BurgerConstructor_basket__list__l9dp_')
+    BUTTON_ORDER = (By.XPATH, ".//button[text()='Оформить заказ']")
+    MODAL_ORDER = (By.XPATH, ".//*[contains(@class, 'Modal_modal__title_shadow__3ikwq Modal_modal__title__2L34m text text_type_digits-large mb-8')]")
+    CLOSE_BUTTON_ON_ORDER_WINDOW = (By.XPATH, ".//button[contains(@class, 'Modal_modal__close_modified__3V5XS Modal_modal__close__TnseK')]")
+    MODAL_ORDER_CREATION = (By.XPATH, ".//*[contains(@class, 'Modal_modal__P3_V5')]")
+    IMAGE_ORDER_CREATE = (By.XPATH, ".//*[contains(@class,'Modal_modal__image__2nh17')]")
 
 
-class LoginPageLocators:
-    ENTRY_LABEL = (By.XPATH, ".//*[text()='Вход']")
-    EMAIL_FIELD = (By.XPATH, ".//label[text()='Email']/following-sibling::input")
-    PASSWORD_FIELD = (By.XPATH, ".//label[text()='Пароль']/following-sibling::input")
-    ENTRY_BUTTON = (By.XPATH, ".//button[text()='Войти']")
-    FORGOT_PASSWORD_LABEL = (By.XPATH, ".//*[text()='Восстановить пароль']")
 
 
-class ProfilePageLocators:
-    LOGIN_FIELD = (By.XPATH, ".//label[text()='Имя']/following-sibling::input")
-    EMAIL_FIELD = (By.XPATH, ".//label[text()='Email']/following-sibling::input")
-    PASSWORD_FIELD = (By.XPATH, ".//label[text()='Пароль']/following-sibling::input")
-    CONSTRUCTOR_LABEL = (By.XPATH, ".//*[text()='Конструктор']")
-    EXIT_BUTTON = (By.XPATH, ".//button[text()='Выход']")
 
-
-class ForgotPasswordPageLocators:
-    RESTORE_BUTTON = (By.XPATH, ".//button[text()='Восстановить']")
-    ENTRY_LABEL = (By.XPATH, ".//*[text()='Войти']")
