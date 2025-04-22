@@ -19,6 +19,9 @@ class BasePage:
     def open_page(self, url):
         self.driver.get(url)
 
+    def get_current_url(self):
+        return self.driver.current_url
+
     def click_on_element(self, locator):
         action = ActionChains(self.driver)
         WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(locator))
@@ -67,7 +70,4 @@ class BasePage:
     def click_on_construct_button(self):
         base_page = BasePage(self.driver)
         base_page.click_on_element(self.construct_button)
-
-
-
 

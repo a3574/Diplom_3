@@ -14,7 +14,7 @@ class TestConstructBurger:
         main_page.open_main_page()
         main_page.click_on_order_feed_button()
         main_page.wait_url_changes(Urls.main_page)
-        assert self.driver.current_url == Urls.feed_page
+        assert main_page.get_current_url() == Urls.feed_page
 
     @allure.title('Тест на то, что залогиненный пользователь может оформить заказ.')
     @allure.description(
@@ -69,7 +69,7 @@ class TestConstructBurger:
         login_page.open_login_page()
         login_page.click_on_construct_button()
         login_page.wait_url_changes(Urls.login_page)
-        assert self.driver.current_url == Urls.main_page
+        assert login_page.get_current_url() == Urls.main_page
 
 
 

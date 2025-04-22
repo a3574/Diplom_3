@@ -24,7 +24,7 @@ class TestRecoveryPassword:
         forgot_password_page.set_email_field(get_client_data.email)
         forgot_password_page.click_on_restore_button()
         forgot_password_page.wait_url_changes(Urls.forgot_password_page)
-        assert self.driver.current_url == Urls.reset_password_page
+        assert forgot_password_page.get_current_url() == Urls.reset_password_page
 
     @allure.title('Тест на переход на страницу восстановления пароля по кнопке Восстановить пароль')
     @allure.description(
@@ -34,7 +34,7 @@ class TestRecoveryPassword:
         login_page.open_login_page()
         login_page.click_on_forgot_password_label()
         login_page.wait_url_changes(Urls.login_page)
-        assert self.driver.current_url == Urls.forgot_password_page
+        assert login_page.get_current_url() == Urls.forgot_password_page
 
 
 

@@ -25,7 +25,7 @@ class TestPersonalAccount:
         main_page.click_on_profile_button()
         main_page.wait_url_changes(Urls.main_page)
         main_page.wait_url_changes(Urls.account_page)
-        assert self.driver.current_url == Urls.profile_page
+        assert main_page.get_current_url() == Urls.profile_page
     @allure.title('Тест на переход в раздел «История заказов»')
     @allure.description('Успешно заходим в личный кабинет. В личном кабинете нажимаем кнопку «Лента заказов». Проверяем что страница поменялась на ленту заказов.')
     def test_ckick_on_history_order_change_url_to_feed_success(self, get_client_data):
@@ -46,7 +46,7 @@ class TestPersonalAccount:
         profile_page = ProfilePage(self.driver)
         profile_page.click_on_order_history_button()
         profile_page.wait_url_changes(Urls.profile_page)
-        assert self.driver.current_url == Urls.order_history_page
+        assert profile_page.get_current_url() == Urls.order_history_page
 
     @allure.title('Тест на выход из аккаунта')
     @allure.description('Успешно заходим в личный кабинет. В личном кабинете нажимаем кнопку «Выход». Проверяем что страница поменялась на страницу логина.')
@@ -68,7 +68,7 @@ class TestPersonalAccount:
         profile_page = ProfilePage(self.driver)
         profile_page.click_on_exit_button()
         profile_page.wait_url_changes(Urls.profile_page)
-        assert self.driver.current_url == Urls.login_page
+        assert profile_page.get_current_url() == Urls.login_page
 
 
 
